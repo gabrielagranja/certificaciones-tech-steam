@@ -6,6 +6,7 @@
     <meta name="description" content="Estrategia de optimización financiera de exámenes de certificación.">
     <title>Simulador ROI | TechCert Guía</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="currency.js" defer></script>
     
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased leading-relaxed min-h-screen flex flex-col">
@@ -35,6 +36,22 @@
     </nav>
 </header>
 <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+<section aria-labelledby="region-settings-title" class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div class="grid gap-3 md:grid-cols-[1fr_auto_auto] md:items-end">
+        <div><h2 id="region-settings-title" class="text-sm font-bold text-slate-900">País y moneda</h2><p class="mt-1 text-xs text-slate-600">España y euros son la vista inicial. Puedes elegir otra región o moneda.</p></div>
+        <label class="block text-xs font-semibold text-slate-700">País o región
+            <select id="country-select" class="mt-1 block w-full min-w-48 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                        <option value="ES" selected>España</option><option value="EU">Otro país de la zona euro</option><option value="US">Estados Unidos</option><option value="GB">Reino Unido</option><option value="CH">Suiza</option><option value="JP">Japón</option><option value="CZ">Chequia</option><option value="DK">Dinamarca</option><option value="HU">Hungría</option><option value="PL">Polonia</option><option value="RO">Rumanía</option><option value="SE">Suecia</option><option value="IS">Islandia</option><option value="NO">Noruega</option><option value="TR">Turquía</option><option value="AU">Australia</option><option value="BR">Brasil</option><option value="CA">Canadá</option>
+                    </select>
+        </label>
+        <label class="block text-xs font-semibold text-slate-700">Moneda de visualización
+            <select id="currency-select" class="mt-1 block w-full min-w-48 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                        <option value="EUR" selected>Euro (EUR)</option><option value="USD">Dólar estadounidense (USD)</option><option value="GBP">Libra esterlina (GBP)</option><option value="CHF">Franco suizo (CHF)</option><option value="JPY">Yen japonés (JPY)</option><option value="CZK">Corona checa (CZK)</option><option value="DKK">Corona danesa (DKK)</option><option value="HUF">Forinto húngaro (HUF)</option><option value="PLN">Zloty polaco (PLN)</option><option value="RON">Leu rumano (RON)</option><option value="SEK">Corona sueca (SEK)</option><option value="ISK">Corona islandesa (ISK)</option><option value="NOK">Corona noruega (NOK)</option><option value="TRY">Lira turca (TRY)</option><option value="AUD">Dólar australiano (AUD)</option><option value="BRL">Real brasileño (BRL)</option><option value="CAD">Dólar canadiense (CAD)</option>
+                    </select>
+        </label>
+    </div>
+    <p class="mt-2 text-xs text-slate-500">Los importes se convierten desde USD de forma orientativa; el emisor puede aplicar tarifas locales e impuestos. Tipo de referencia ECB: <span id="currency-rate-date">8 oct 2026</span>. <a class="font-semibold text-emerald-800 underline" href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.es.html" target="_blank" rel="noopener noreferrer">Ver tipos de cambio</a>.</p>
+</section>
 <section id="voucher-sim" class="space-y-6">
             <div class="border-b border-slate-200 pb-3">
                 <h3 class="text-2xl font-bold text-slate-900">5. Estrategia de Optimización Financiera: Simulador "Voucher Chain"</h3>
@@ -54,11 +71,11 @@
                         AWS otorga automáticamente un código de <strong>50% de descuento</strong> para el siguiente examen cada vez que apruebas una certificación oficial.
                     </p>
                     <p class="text-xs text-slate-300 leading-relaxed">
-                        Iniciando desde el nivel Fundación ($100 USD), el profesional adquiere cupones sucesivos que reducen drásticamente las tarifas de exámenes Asociados y de Especialización.
+                        Iniciando desde el nivel Fundación (<span data-usd-price="100">89,40 €</span>), el profesional adquiere cupones sucesivos que reducen drásticamente las tarifas de exámenes Asociados y de Especialización.
                     </p>
                     <div class="pt-2">
                         <div class="text-xs text-slate-400">Ahorro Neto Estimado</div>
-                        <div class="text-3xl font-extrabold text-emerald-400">$225 USD (41% Ahorro)</div>
+                        <div class="text-3xl font-extrabold text-emerald-400"><span data-usd-price="225">201,14 €</span> (41% Ahorro)</div>
                     </div>
                 </div>
 
@@ -72,10 +89,10 @@
                             <div>
                                 <span class="text-xs font-bold text-emerald-400">PASO 1 • Junior</span>
                                 <h6 class="text-sm font-bold text-white">AWS Cloud Practitioner (CLF-C02)</h6>
-                                <p class="text-xs text-slate-400">Coste oficial sin descuento: $100 USD</p>
+                                <p class="text-xs text-slate-400">Coste oficial sin descuento: <span data-usd-price="100">89,40 €</span></p>
                             </div>
                             <div class="text-right">
-                                <span class="text-sm font-extrabold text-white">$100 USD</span>
+                                <span class="text-sm font-extrabold text-white" data-usd-price="100">89,40 €</span>
                                 <div class="text-[10px] text-emerald-400">Genera Cupón 50% 🎟️</div>
                             </div>
                         </div>
@@ -85,11 +102,11 @@
                             <div>
                                 <span class="text-xs font-bold text-sky-400">PASO 2 • Mid-Level</span>
                                 <h6 class="text-sm font-bold text-white">AWS Solutions Architect / Data Engineer Assoc.</h6>
-                                <p class="text-xs text-slate-400">Coste oficial: $150 USD | Con Cupón Paso 1</p>
+                                <p class="text-xs text-slate-400">Coste oficial: <span data-usd-price="150">134,10 €</span> | Con Cupón Paso 1</p>
                             </div>
                             <div class="text-right">
-                                <span class="text-sm font-extrabold text-sky-400">$75 USD</span>
-                                <span class="line-through text-xs text-slate-500 block">$150</span>
+                                <span class="text-sm font-extrabold text-sky-400" data-usd-price="75">67,05 €</span>
+                                <span class="line-through text-xs text-slate-500 block" data-usd-price="150">134,10 €</span>
                                 <div class="text-[10px] text-emerald-400">Genera Cupón 50% 🎟️</div>
                             </div>
                         </div>
@@ -99,11 +116,11 @@
                             <div>
                                 <span class="text-xs font-bold text-purple-400">PASO 3 • Senior</span>
                                 <h6 class="text-sm font-bold text-white">AWS Security Specialty / ML Specialty</h6>
-                                <p class="text-xs text-slate-400">Coste oficial: $300 USD | Con Cupón Paso 2</p>
+                                <p class="text-xs text-slate-400">Coste oficial: <span data-usd-price="300">268,19 €</span> | Con Cupón Paso 2</p>
                             </div>
                             <div class="text-right">
-                                <span class="text-sm font-extrabold text-purple-400">$150 USD</span>
-                                <span class="line-through text-xs text-slate-500 block">$300</span>
+                                <span class="text-sm font-extrabold text-purple-400" data-usd-price="150">134,10 €</span>
+                                <span class="line-through text-xs text-slate-500 block" data-usd-price="300">268,19 €</span>
                                 <div class="text-[10px] text-emerald-400">Acreditación Máxima Alcanzada</div>
                             </div>
                         </div>
@@ -113,11 +130,11 @@
                     <div class="pt-2 border-t border-slate-700 flex justify-between items-center text-xs">
                         <div>
                             <span class="text-slate-400 block">Inversión Directa Tradicional:</span>
-                            <span class="text-slate-300 font-bold">$550 USD</span>
+                            <span class="text-slate-300 font-bold" data-usd-price="550">491,69 €</span>
                         </div>
                         <div class="text-right">
                             <span class="text-slate-400 block">Inversión Mediante Voucher Chain:</span>
-                            <span class="text-emerald-400 font-black text-sm">$325 USD</span>
+                            <span class="text-emerald-400 font-black text-sm" data-usd-price="325">290,54 €</span>
                         </div>
                     </div>
                 </div>
@@ -125,7 +142,7 @@
         </section>
 <section class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6">
     <h2 class="text-lg font-bold text-slate-900">Consulta el coste con tu país y moneda</h2>
-    <p class="text-slate-700 mt-1">El itinerario Voucher Chain conserva los importes de la fuente original en USD. Para consultar el simulador de descuentos con selección de país y moneda, abre la página de descuentos AWS.</p>
+    <p class="text-slate-700 mt-1">Los importes de origen están en USD y se convierten a la moneda elegida con el tipo de referencia del ECB. El emisor puede aplicar tarifas e impuestos locales. Para una simulación ampliada, abre el simulador de descuentos AWS.</p>
     <a href="descuentos.html" class="inline-flex mt-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg">Abrir simulador de descuentos</a>
 </section>
 </main>
