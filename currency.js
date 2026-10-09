@@ -61,8 +61,8 @@
         }).format(convertAmount(amount, baseCurrency));
     }
 
-    function formatUsd(amount) {
-        return formatBaseAmount(amount, 'USD');
+    function formatUsd(amount, maximumFractionDigits) {
+        return formatBaseAmount(amount, 'USD', maximumFractionDigits);
     }
 
     function formatUsdMillions(amount) {
