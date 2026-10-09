@@ -4,6 +4,7 @@
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Guía práctica para explorar certificaciones profesionales Tech y STEAM."><title>Inicio | TechCert Guía</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="currency.js" defer></script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased leading-relaxed min-h-screen flex flex-col">
     <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
@@ -35,6 +36,23 @@
                 <p class="mt-4 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">Empieza por tu nivel y el área que te interesa. Si todavía no lo tienes claro, te ayudamos a explorar opciones.</p>
                 <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-slate-300 sm:text-sm"><span>23 certificaciones en el catálogo</span><span class="text-slate-500" aria-hidden="true">•</span><span>Fichas con requisitos y fuente oficial</span></div>
             </div>
+        </section>
+
+        <section aria-label="Preferencias de país y moneda" class="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
+            <div class="grid gap-4 md:grid-cols-[1fr_auto_auto] md:items-end">
+                <div><h2 class="text-sm font-bold text-slate-900">Adapta los precios a tu región</h2><p class="mt-1 text-xs text-slate-600">Elige país y moneda; en España mostramos euros por defecto.</p></div>
+                <label class="block text-xs font-semibold text-slate-700">País o región
+                    <select id="country-select" class="mt-1 block w-full min-w-48 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                        <option value="ES">España</option><option value="EU">Otro país de la zona euro</option><option value="US">Estados Unidos</option><option value="GB">Reino Unido</option><option value="CH">Suiza</option><option value="JP">Japón</option><option value="CZ">Chequia</option><option value="DK">Dinamarca</option><option value="HU">Hungría</option><option value="PL">Polonia</option><option value="RO">Rumanía</option><option value="SE">Suecia</option><option value="IS">Islandia</option><option value="NO">Noruega</option><option value="TR">Turquía</option><option value="AU">Australia</option><option value="BR">Brasil</option><option value="CA">Canadá</option>
+                    </select>
+                </label>
+                <label class="block text-xs font-semibold text-slate-700">Moneda de visualización
+                    <select id="currency-select" class="mt-1 block w-full min-w-48 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                        <option value="EUR">Euro (EUR)</option><option value="USD">Dólar estadounidense (USD)</option><option value="GBP">Libra esterlina (GBP)</option><option value="CHF">Franco suizo (CHF)</option><option value="JPY">Yen japonés (JPY)</option><option value="CZK">Corona checa (CZK)</option><option value="DKK">Corona danesa (DKK)</option><option value="HUF">Forinto húngaro (HUF)</option><option value="PLN">Zloty polaco (PLN)</option><option value="RON">Leu rumano (RON)</option><option value="SEK">Corona sueca (SEK)</option><option value="ISK">Corona islandesa (ISK)</option><option value="NOK">Corona noruega (NOK)</option><option value="TRY">Lira turca (TRY)</option><option value="AUD">Dólar australiano (AUD)</option><option value="BRL">Real brasileño (BRL)</option><option value="CAD">Dólar canadiense (CAD)</option>
+                    </select>
+                </label>
+            </div>
+            <p class="mt-3 text-xs leading-5 text-slate-500">Importes convertidos desde USD de forma orientativa; el emisor puede aplicar tarifas locales e impuestos. Tipo de referencia ECB: <span id="currency-rate-date">8 oct 2026</span>. <a class="font-semibold text-emerald-800 underline" href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.es.html" target="_blank" rel="noopener noreferrer">Ver tipos de cambio</a>.</p>
         </section>
 
         <section aria-labelledby="choose-path" class="space-y-4">
