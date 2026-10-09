@@ -4,6 +4,7 @@
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Busca y compara certificaciones profesionales de cloud, datos, ciberseguridad y STEAM."><title>Catálogo de certificaciones | TechCert Guía</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="currency.js" defer></script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased leading-relaxed min-h-screen flex flex-col">
     <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
@@ -38,6 +39,23 @@
                 <div class="text-xs bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg border border-slate-300">
                     Certificaciones cargadas: <span id="cert-count" class="font-bold text-emerald-600">0</span>
                 </div>
+            </div>
+
+            <div aria-label="Preferencias de país y moneda" class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div class="grid gap-3 md:grid-cols-[1fr_auto_auto] md:items-end">
+                    <div><h2 class="text-sm font-bold text-slate-900">País y moneda</h2><p class="mt-1 text-xs text-slate-600">Precios convertidos desde USD a modo orientativo.</p></div>
+                    <label class="block text-xs font-semibold text-slate-700">País o región
+                        <select id="country-select" class="mt-1 block w-full min-w-48 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                            <option value="ES">España</option><option value="EU">Otro país de la zona euro</option><option value="US">Estados Unidos</option><option value="GB">Reino Unido</option><option value="CH">Suiza</option><option value="JP">Japón</option><option value="CZ">Chequia</option><option value="DK">Dinamarca</option><option value="HU">Hungría</option><option value="PL">Polonia</option><option value="RO">Rumanía</option><option value="SE">Suecia</option><option value="IS">Islandia</option><option value="NO">Noruega</option><option value="TR">Turquía</option><option value="AU">Australia</option><option value="BR">Brasil</option><option value="CA">Canadá</option>
+                        </select>
+                    </label>
+                    <label class="block text-xs font-semibold text-slate-700">Moneda
+                        <select id="currency-select" class="mt-1 block w-full min-w-48 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                            <option value="EUR">Euro (EUR)</option><option value="USD">Dólar estadounidense (USD)</option><option value="GBP">Libra esterlina (GBP)</option><option value="CHF">Franco suizo (CHF)</option><option value="JPY">Yen japonés (JPY)</option><option value="CZK">Corona checa (CZK)</option><option value="DKK">Corona danesa (DKK)</option><option value="HUF">Forinto húngaro (HUF)</option><option value="PLN">Zloty polaco (PLN)</option><option value="RON">Leu rumano (RON)</option><option value="SEK">Corona sueca (SEK)</option><option value="ISK">Corona islandesa (ISK)</option><option value="NOK">Corona noruega (NOK)</option><option value="TRY">Lira turca (TRY)</option><option value="AUD">Dólar australiano (AUD)</option><option value="BRL">Real brasileño (BRL)</option><option value="CAD">Dólar canadiense (CAD)</option>
+                        </select>
+                    </label>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">La tarifa local e impuestos pueden variar. Cambio de referencia ECB: <span id="currency-rate-date">8 oct 2026</span>. <a class="font-semibold text-emerald-800 underline" href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.es.html" target="_blank" rel="noopener noreferrer">Ver tipos</a>.</p>
             </div>
 
             <!-- Filters Bar -->
@@ -521,8 +539,8 @@ document.addEventListener('DOMContentLoaded',() => {
                     <div class="pt-3 border-t border-slate-100 space-y-3">
                         <div class="flex justify-end items-end">
                             <div class="text-right">
-                                <span class="text-[10px] uppercase text-slate-400 font-bold block">Tasa de examen orientativa (USD)</span>
-                                <span class="text-sm font-bold text-slate-700">$${item.cost} USD</span>
+                                <span class="text-[10px] uppercase text-slate-400 font-bold block">Tarifa base de referencia convertida</span>
+                                <span class="text-sm font-bold text-slate-700" data-usd-price="${item.cost}">$${item.cost} USD</span>
                             </div>
                         </div>
 
@@ -532,6 +550,7 @@ document.addEventListener('DOMContentLoaded',() => {
                     </div>
                 </div>
             `).join('');
+            window.updateTechCertPrices?.();
         }
 
         // Modal Handler
@@ -551,7 +570,7 @@ document.addEventListener('DOMContentLoaded',() => {
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 grid grid-cols-2 gap-3 text-xs">
                         <div>
                             <span class="text-slate-500 block">Coste orientativo del examen:</span>
-                            <span class="text-base font-bold text-slate-800">$${item.cost} USD</span>
+                            <span class="text-base font-bold text-slate-800" data-usd-price="${item.cost}">$${item.cost} USD</span>
                         </div>
                         <div>
                             <span class="text-slate-500 block">Duración Examen:</span>
@@ -586,6 +605,8 @@ document.addEventListener('DOMContentLoaded',() => {
                     </div>
                 </div>
             `;
+
+            window.updateTechCertPrices?.();
 
             document.getElementById('cert-modal').classList.remove('hidden');
         }
