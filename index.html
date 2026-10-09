@@ -26,37 +26,65 @@
             <a href="fuentes.html" class="block text-slate-200 hover:text-emerald-400 py-1">Fuentes</a>
         </nav>
     </header>
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        <!-- Hero & Introduction Section -->
-        <section class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white rounded-2xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
-            <div class="max-w-3xl space-y-4 relative z-10">
-                <span class="inline-block bg-emerald-500/20 text-emerald-300 text-xs font-semibold px-3 py-1 rounded-full border border-emerald-500/30">
-                    Guía práctica • Tech y STEAM
-                </span>
-                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                    Encuentra tu próxima certificación Tech o STEAM
-                </h1>
-                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                    Compara certificaciones por área y nivel, revisa sus requisitos y accede a fuentes oficiales para confirmar los detalles antes de inscribirte.
-                </p>
-                <div class="pt-2 flex flex-wrap gap-4">
-                    <a href="certificaciones.html" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-5 py-2.5 rounded-lg text-sm transition-all shadow-md">
-                        Explorar catálogo de certificaciones
-                    </a>
-                    <a href="descuentos.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-5 py-2.5 rounded-lg text-sm border border-slate-600 transition-all">
-                        Ver simulador de descuentos
-                    </a>
-                </div>
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8 sm:space-y-10">
+        <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white shadow-xl">
+            <div class="absolute -right-24 -top-32 h-80 w-80 rounded-full bg-emerald-400/10 blur-3xl" aria-hidden="true"></div>
+            <div class="relative px-6 py-9 sm:px-10 sm:py-12 lg:px-14">
+                <span class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-300"><span class="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true"></span> TechCert Guía · Tech y STEAM</span>
+                <h1 class="mt-5 max-w-3xl text-3xl font-extrabold tracking-tight sm:text-5xl">Encuentra una certificación que encaje contigo</h1>
+                <p class="mt-4 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">Empieza por tu nivel y el área que te interesa. Si todavía no lo tienes claro, te ayudamos a explorar opciones.</p>
+                <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-slate-300 sm:text-sm"><span>23 certificaciones en el catálogo</span><span class="text-slate-500" aria-hidden="true">•</span><span>Fichas con requisitos y fuente oficial</span></div>
             </div>
         </section>
-        <section aria-label="Aviso de verificación" class="bg-amber-50 border border-amber-200 text-amber-950 rounded-xl p-4 text-sm">
-            <strong>Antes de inscribirte:</strong> La guía es orientativa. Confirma nombre, requisitos, vigencia y tarifa local en la página oficial de cada emisor antes de inscribirte.
+
+        <section aria-labelledby="choose-path" class="space-y-4">
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <div><p class="text-xs font-bold uppercase tracking-[0.16em] text-emerald-700">Elige tu punto de partida</p><h2 id="choose-path" class="mt-1 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">¿Ya sabes qué estás buscando?</h2></div>
+                <p class="max-w-xl text-sm text-slate-600">Puedes ir directamente al filtro o descubrir primero qué área te llama la atención.</p>
+            </div>
+
+            <div class="grid gap-5 lg:grid-cols-2">
+                <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7" aria-labelledby="direct-path-title">
+                    <div class="flex items-start gap-4">
+                        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-xl" aria-hidden="true">⌕</span>
+                        <div><p class="text-xs font-bold uppercase tracking-wide text-emerald-700">Búsqueda directa</p><h3 id="direct-path-title" class="mt-1 text-lg font-bold text-slate-900">Sé mi área y mi nivel</h3><p class="mt-1 text-sm text-slate-600">Filtra el catálogo en un paso. Podrás ajustar los resultados después.</p></div>
+                    </div>
+                    <form action="certificaciones.html" method="get" class="mt-6 space-y-4">
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <label class="block text-sm font-semibold text-slate-700">Área de certificación
+                                <select name="domain" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm font-normal text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                                    <option value="ALL">Todas las áreas</option><option value="Cloud">Cloud e infraestructura</option><option value="Cybersecurity">Ciberseguridad</option><option value="DataAI">Datos e inteligencia artificial</option><option value="STEAM">STEAM, agilidad y gestión</option>
+                                </select>
+                            </label>
+                            <label class="block text-sm font-semibold text-slate-700">Mi nivel actual
+                                <select name="seniority" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm font-normal text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                                    <option value="ALL">Todos los niveles</option><option value="Junior">Junior / Entry</option><option value="Mid">Mid-Level / Associate</option><option value="Senior">Senior / Professional</option><option value="Lead">Lead / Executive</option>
+                                </select>
+                            </label>
+                        </div>
+                        <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 sm:w-auto">Ver certificaciones <span aria-hidden="true">→</span></button>
+                    </form>
+                </section>
+
+                <section class="rounded-2xl border border-indigo-100 bg-indigo-50/60 p-5 shadow-sm sm:p-7" aria-labelledby="guided-path-title">
+                    <div class="flex items-start gap-4">
+                        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-xl shadow-sm" aria-hidden="true">✦</span>
+                        <div><p class="text-xs font-bold uppercase tracking-wide text-indigo-700">Exploración guiada</p><h3 id="guided-path-title" class="mt-1 text-lg font-bold text-slate-900">Estoy empezando o aún no lo sé</h3><p class="mt-1 text-sm text-slate-600">Elige un tema que te dé curiosidad. Te mostraremos las opciones del área y su nivel.</p></div>
+                    </div>
+                    <div class="mt-5 grid grid-cols-2 gap-3">
+                        <a href="certificaciones.html?domain=Cloud#explorer" class="group rounded-xl border border-white bg-white p-3 transition hover:border-emerald-400 hover:shadow-sm"><span class="text-lg" aria-hidden="true">☁️</span><span class="mt-2 block text-sm font-bold text-slate-900 group-hover:text-emerald-700">Cloud y sistemas</span><span class="mt-1 block text-xs text-slate-600">Construir y mantener servicios digitales</span></a>
+                        <a href="certificaciones.html?domain=Cybersecurity#explorer" class="group rounded-xl border border-white bg-white p-3 transition hover:border-emerald-400 hover:shadow-sm"><span class="text-lg" aria-hidden="true">🛡️</span><span class="mt-2 block text-sm font-bold text-slate-900 group-hover:text-emerald-700">Ciberseguridad</span><span class="mt-1 block text-xs text-slate-600">Proteger sistemas, redes y datos</span></a>
+                        <a href="certificaciones.html?domain=DataAI#explorer" class="group rounded-xl border border-white bg-white p-3 transition hover:border-emerald-400 hover:shadow-sm"><span class="text-lg" aria-hidden="true">📊</span><span class="mt-2 block text-sm font-bold text-slate-900 group-hover:text-emerald-700">Datos e IA</span><span class="mt-1 block text-xs text-slate-600">Encontrar patrones y crear soluciones</span></a>
+                        <a href="certificaciones.html?domain=STEAM#explorer" class="group rounded-xl border border-white bg-white p-3 transition hover:border-emerald-400 hover:shadow-sm"><span class="text-lg" aria-hidden="true">📐</span><span class="mt-2 block text-sm font-bold text-slate-900 group-hover:text-emerald-700">STEAM y proyectos</span><span class="mt-1 block text-xs text-slate-600">Diseño, ingeniería y gestión</span></a>
+                    </div>
+                    <a href="carrera.html#seniority-roadmap" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-indigo-800 underline decoration-indigo-300 underline-offset-4 hover:text-indigo-950">¿No sabes qué área elegir? Empieza por la ruta Junior <span aria-hidden="true">↗</span></a>
+                </section>
+            </div>
         </section>
-        <section aria-label="Accesos directos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <a href="carrera.html" class="group bg-white rounded-xl border border-slate-200 p-5 hover:border-emerald-500 hover:shadow-md transition-all"><span class="text-2xl" aria-hidden="true">🧭</span><h2 class="font-bold text-slate-900 mt-3 group-hover:text-emerald-700">Rutas de carrera</h2><p class="text-sm text-slate-600 mt-1">Explora niveles, objetivos y ejemplos de certificaciones.</p><span class="text-emerald-700 text-sm font-semibold mt-4 inline-block">Ver niveles →</span></a>
-            <a href="certificaciones.html" class="group bg-white rounded-xl border border-slate-200 p-5 hover:border-emerald-500 hover:shadow-md transition-all"><span class="text-2xl" aria-hidden="true">🔎</span><h2 class="font-bold text-slate-900 mt-3 group-hover:text-emerald-700">Catálogo</h2><p class="text-sm text-slate-600 mt-1">Busca y filtra 23 certificaciones por área, nivel o proveedor.</p><span class="text-emerald-700 text-sm font-semibold mt-4 inline-block">Explorar certificaciones →</span></a>
-            <a href="descuentos.html" class="group bg-white rounded-xl border border-slate-200 p-5 hover:border-emerald-500 hover:shadow-md transition-all"><span class="text-2xl" aria-hidden="true">🎟️</span><h2 class="font-bold text-slate-900 mt-3 group-hover:text-emerald-700">Descuentos</h2><p class="text-sm text-slate-600 mt-1">Consulta la simulación orientativa de cupones AWS.</p><span class="text-emerald-700 text-sm font-semibold mt-4 inline-block">Ver simulador →</span></a>
-            <a href="fuentes.html" class="group bg-white rounded-xl border border-slate-200 p-5 hover:border-emerald-500 hover:shadow-md transition-all"><span class="text-2xl" aria-hidden="true">🔗</span><h2 class="font-bold text-slate-900 mt-3 group-hover:text-emerald-700">Fuentes oficiales</h2><p class="text-sm text-slate-600 mt-1">Accede a los portales oficiales de los emisores.</p><span class="text-emerald-700 text-sm font-semibold mt-4 inline-block">Ver fuentes →</span></a>
+
+        <section aria-label="Información y recursos" class="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div class="flex gap-3"><span class="text-xl" aria-hidden="true">ⓘ</span><p class="text-sm text-slate-600"><strong class="text-slate-900">Antes de inscribirte:</strong> confirma vigencia, requisitos y tarifa local en la página oficial del emisor.</p></div>
+            <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold"><a class="text-emerald-800 hover:underline" href="fuentes.html">Fuentes oficiales</a><a class="text-emerald-800 hover:underline" href="descuentos.html">Simulador de descuentos</a></div>
         </section>
     </main>
     <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2"><p>© 2026 TechCert Guía • Certificaciones tecnológicas y STEAM.</p><p class="text-slate-500">Los enlaces remiten a páginas oficiales de los emisores. Verifica vigencia, tarifas locales y requisitos antes de registrarte.</p></div></footer>
