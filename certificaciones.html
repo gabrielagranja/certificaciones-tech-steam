@@ -456,7 +456,16 @@ const certificationsData = [
             }
         ];
 let activeDomain='ALL'; let activeSeniority='ALL'; let activeSearch=''; let activeSort='cost-asc';
-document.addEventListener('DOMContentLoaded',renderCertifications);
+document.addEventListener('DOMContentLoaded',() => {
+            const params = new URLSearchParams(window.location.search);
+            const domain = params.get('domain');
+            const seniority = params.get('seniority');
+            const validDomains = ['ALL', 'Cloud', 'Cybersecurity', 'DataAI', 'STEAM'];
+            const validSeniorities = ['ALL', 'Junior', 'Mid', 'Senior', 'Lead'];
+            if (validDomains.includes(domain)) document.getElementById('domain-filter').value = domain;
+            if (validSeniorities.includes(seniority)) document.getElementById('seniority-filter').value = seniority;
+            renderCertifications();
+        });
 // Apply Explorer Filters and Render
         function applyFilters() {
             activeSearch = document.getElementById('search-input').value.toLowerCase();
