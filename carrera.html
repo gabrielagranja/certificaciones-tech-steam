@@ -91,28 +91,51 @@ const seniorityInfo = {
                 title: 'Nivel Entry / Junior (0 - 3 años de experiencia)',
                 target: 'Filtrado inicial de CVs e inserción laboral acelerada.',
                 focus: 'Validar sintaxis básica, fundamentos teóricos de la tecnología y capacidad demostrada de aprendizaje autónomo.',
-                examples: ['CompTIA A+ / Security+', 'AWS Cloud Practitioner', 'Azure Fundamentals (AZ-900)', 'Power BI Data Analyst (PL-300)'],
+                examples: [
+                    { label: 'CompTIA A+', certId: 'comptia-a-plus' },
+                    { label: 'CompTIA Security+', certId: 'comptia-security-plus' },
+                    { label: 'AWS Cloud Practitioner', certId: 'aws-cloud-practitioner' },
+                    { label: 'Azure Fundamentals (AZ-900)', certId: 'azure-fundamentals' },
+                    { label: 'Power BI Data Analyst (PL-300)', certId: 'pbi-analyst' }
+                ],
                 impact: 'Puede ayudar a estructurar el aprendizaje inicial y mostrar fundamentos; acompáñala con proyectos y experiencia práctica.'
             },
             mid: {
                 title: 'Nivel Mid-Level / Associate (3 - 6 años de experiencia)',
                 target: 'Ejecución técnica autónoma e implementación de sistemas.',
                 focus: 'Acreditar capacidad operativa para resolver incidencias complejas y construir arquitecturas reales según las mejores prácticas.',
-                examples: ['AWS Solutions Architect Assoc.', 'Fabric Data Engineer (DP-700)', 'Certified Kubernetes Administrator (CKA)', 'Certified Ethical Hacker (CEH)'],
+                examples: [
+                    { label: 'AWS Solutions Architect Assoc.', certId: 'aws-saa' },
+                    { label: 'Fabric Data Engineer (DP-700)', certId: 'azure-data-eng' },
+                    { label: 'Certified Kubernetes Administrator (CKA)', certId: 'cka' },
+                    { label: 'Certified Ethical Hacker (CEH)', certId: 'ceh' }
+                ],
                 impact: 'Puede respaldar la experiencia práctica en implementación y resolución de problemas; el nivel real depende del puesto y del contexto.'
             },
             senior: {
                 title: 'Nivel Senior / Professional (5 - 8+ años de experiencia)',
                 target: 'Diseño de arquitecturas resilientes, MLOps y ciberseguridad ofensiva/defensiva.',
                 focus: 'Demostrar optimización financiera de infraestructuras, seguridad avanzada y diseño de modelos de IA a escala.',
-                examples: ['AWS Security Specialty', 'GCP Professional Cloud Architect', 'Fabric Analytics Engineer (DP-600)', 'CCSP', 'OSCP'],
+                examples: [
+                    { label: 'AWS Security Specialty', certId: 'aws-sec' },
+                    { label: 'GCP Professional Cloud Architect', certId: 'gcp-arch' },
+                    { label: 'Fabric Analytics Engineer (DP-600)', certId: 'fabric-ae' },
+                    { label: 'CCSP', certId: 'ccsp' },
+                    { label: 'OSCP / OSCP+', certId: 'oscp-plus' }
+                ],
                 impact: 'Puede aportar evidencia de especialización; la experiencia demostrable y las responsabilidades siguen siendo esenciales.'
             },
             lead: {
                 title: 'Nivel Lead / Principal / Executive (+10 años de experiencia)',
                 target: 'Gobernanza corporativa, gestión del riesgo, alineación de TI con el negocio.',
                 focus: 'Validar liderazgo estratégico de grandes equipos, cumplimiento normativo (DORA/NIS2) y dirección de portafolios de inversión.',
-                examples: ['CISSP', 'CISM', 'CRISC', 'PMP', 'PgMP'],
+                examples: [
+                    { label: 'CISSP', certId: 'cissp' },
+                    { label: 'CISM', certId: 'cism' },
+                    { label: 'CRISC', certId: 'crisc' },
+                    { label: 'PMP', certId: 'pmp' },
+                    { label: 'PgMP', certId: 'pgmp' }
+                ],
                 impact: 'Puede complementar experiencia de liderazgo y gobierno; los requisitos dependen de cada organización y cargo.'
             }
         };
@@ -151,7 +174,7 @@ const seniorityInfo = {
                 <div class="pt-2">
                     <strong class="block text-xs text-slate-900 font-bold mb-2">Ejemplos Representativos:</strong>
                     <div class="flex flex-wrap gap-2">
-                        ${data.examples.map(ex => `<span class="bg-slate-100 border border-slate-300 text-slate-800 text-xs px-2.5 py-1 rounded-md font-medium">${ex}</span>`).join('')}
+                        ${data.examples.map(ex => `<a href="certificaciones.html?cert=${encodeURIComponent(ex.certId)}" aria-label="Ver ${ex.label} en el catálogo de certificaciones" class="bg-slate-100 border border-slate-300 text-slate-800 hover:bg-emerald-50 hover:border-emerald-500 hover:text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1 text-xs px-2.5 py-1 rounded-md font-medium transition-colors">${ex.label} <span aria-hidden="true">↗</span></a>`).join('')}
                     </div>
                 </div>
             `;
