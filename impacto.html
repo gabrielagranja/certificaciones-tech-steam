@@ -6,6 +6,7 @@
     <meta name="description" content="Impacto macroeconómico de las certificaciones tecnológicas y retorno de inversión.">
     <title>Impacto Macro | TechCert Guía</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="currency.js" defer></script>
     
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased leading-relaxed min-h-screen flex flex-col">
@@ -35,6 +36,22 @@
     </nav>
 </header>
 <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+<section aria-labelledby="region-settings-title" class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div class="grid gap-3 md:grid-cols-[1fr_auto_auto] md:items-end">
+        <div><h2 id="region-settings-title" class="text-sm font-bold text-slate-900">País y moneda</h2><p class="mt-1 text-xs text-slate-600">España y euros son la vista inicial. Puedes elegir otra región o moneda.</p></div>
+        <label class="block text-xs font-semibold text-slate-700">País o región
+            <select id="country-select" class="mt-1 block w-full min-w-48 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                        <option value="ES" selected>España</option><option value="EU">Otro país de la zona euro</option><option value="US">Estados Unidos</option><option value="GB">Reino Unido</option><option value="CH">Suiza</option><option value="JP">Japón</option><option value="CZ">Chequia</option><option value="DK">Dinamarca</option><option value="HU">Hungría</option><option value="PL">Polonia</option><option value="RO">Rumanía</option><option value="SE">Suecia</option><option value="IS">Islandia</option><option value="NO">Noruega</option><option value="TR">Turquía</option><option value="AU">Australia</option><option value="BR">Brasil</option><option value="CA">Canadá</option>
+                    </select>
+        </label>
+        <label class="block text-xs font-semibold text-slate-700">Moneda de visualización
+            <select id="currency-select" class="mt-1 block w-full min-w-48 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                        <option value="EUR" selected>Euro (EUR)</option><option value="USD">Dólar estadounidense (USD)</option><option value="GBP">Libra esterlina (GBP)</option><option value="CHF">Franco suizo (CHF)</option><option value="JPY">Yen japonés (JPY)</option><option value="CZK">Corona checa (CZK)</option><option value="DKK">Corona danesa (DKK)</option><option value="HUF">Forinto húngaro (HUF)</option><option value="PLN">Zloty polaco (PLN)</option><option value="RON">Leu rumano (RON)</option><option value="SEK">Corona sueca (SEK)</option><option value="ISK">Corona islandesa (ISK)</option><option value="NOK">Corona noruega (NOK)</option><option value="TRY">Lira turca (TRY)</option><option value="AUD">Dólar australiano (AUD)</option><option value="BRL">Real brasileño (BRL)</option><option value="CAD">Dólar canadiense (CAD)</option>
+                    </select>
+        </label>
+    </div>
+    <p class="mt-2 text-xs text-slate-500">Los importes son equivalentes orientativos en la moneda seleccionada. Tipo de referencia ECB: <span id="currency-rate-date">8 oct 2026</span>. <a class="font-semibold text-emerald-800 underline" href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.es.html" target="_blank" rel="noopener noreferrer">Ver tipos de cambio</a>.</p>
+</section>
 <section id="macro-roi" class="space-y-6">
             <div class="border-b border-slate-200 pb-3">
                 <h3 class="text-2xl font-bold text-slate-900">1. Contexto Macroeconómico y Retorno de Inversión (ROI)</h3>
@@ -46,13 +63,13 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                     <div class="text-xs font-medium text-slate-500 uppercase tracking-wider">Pérdida Global Anual</div>
-                    <div class="text-2xl sm:text-3xl font-extrabold text-rose-600 mt-2">$775.000M USD</div>
+                    <div class="text-2xl sm:text-3xl font-extrabold text-rose-600 mt-2"><span data-usd-millions="775000">692.830 M €</span></div>
                     <p class="text-xs text-slate-600 mt-2">Impacto derivado de la brecha de habilidades técnicas (IDC / Pearson VUE).</p>
                 </div>
 
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                     <div class="text-xs font-medium text-slate-500 uppercase tracking-wider">Valor/Empleado Certificado</div>
-                    <div class="text-2xl sm:text-3xl font-extrabold text-emerald-600 mt-2">+$18.000 USD/año</div>
+                    <div class="text-2xl sm:text-3xl font-extrabold text-emerald-600 mt-2">+<span data-usd-price="18000" data-max-fraction-digits="0">16.092 €</span>/año</div>
                     <p class="text-xs text-slate-600 mt-2">Aporte económico neto adicional estimado por cada contratación certificada.</p>
                 </div>
 
