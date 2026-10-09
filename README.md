@@ -2,6 +2,8 @@
 
 Guía informativa para explorar certificaciones profesionales de tecnología y STEAM, comparar requisitos, niveles y costes orientativos.
 
+> **Estado: en construcción.** El catálogo se amplía progresivamente.
+
 **Web pública:** [TechCert Guía](https://gabrielagranja.github.io/certificaciones-tech-steam/index.html)
 
 ## Qué incluye
