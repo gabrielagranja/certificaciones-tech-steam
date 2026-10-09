@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comparativa salarial por certificación, nivel y mercado regional.">
+    <title>Comparativa Salarial | TechCert Guía</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container { position: relative; width: 100%; max-width: 650px; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 380px; } }
+        .scrollbar-thin::-webkit-scrollbar { height: 6px; width: 6px; }
+        .scrollbar-thin::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased leading-relaxed min-h-screen flex flex-col">
+<header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-16 flex items-center justify-between gap-4">
+        <a href="index.html" class="flex items-center space-x-3 shrink-0" aria-label="TechCert Guía, inicio">
+            <span class="text-2xl font-black text-emerald-400">❖</span>
+            <span class="text-lg sm:text-xl font-bold tracking-tight">TechCert <span class="text-emerald-400 font-normal">Guía</span></span>
+        </a>
+        <nav aria-label="Navegación principal" class="hidden lg:flex items-center gap-3 xl:gap-5 text-xs xl:text-sm font-medium">
+                <a href="impacto.html" class="text-slate-200 hover:text-emerald-400 transition-colors">Impacto Macro</a>
+                <a href="carrera.html" class="text-slate-200 hover:text-emerald-400 transition-colors">Niveles & Carrera</a>
+                <a href="certificaciones.html" class="text-slate-200 hover:text-emerald-400 transition-colors">Buscador Interactivo</a>
+                <a href="salarios.html" class="text-emerald-400 font-bold" aria-current="page">Comparativa Salarial</a>
+                <a href="roi.html" class="text-slate-200 hover:text-emerald-400 transition-colors">Simulador ROI</a>
+                <a href="fuentes.html" class="text-slate-200 hover:text-emerald-400 transition-colors">Fuentes</a>
+        </nav>
+        <button id="mobile-menu-btn" type="button" aria-label="Abrir menú" aria-controls="mobile-menu" aria-expanded="false" class="p-2 lg:hidden text-slate-300 hover:text-white text-xl">☰</button>
+    </div>
+    <nav id="mobile-menu" aria-label="Navegación móvil" class="hidden lg:hidden bg-slate-800 px-4 pt-2 pb-4 space-y-1 border-t border-slate-700">
+            <a href="impacto.html" class="block py-2 text-slate-200 hover:text-emerald-400 transition-colors">Impacto Macro</a>
+            <a href="carrera.html" class="block py-2 text-slate-200 hover:text-emerald-400 transition-colors">Niveles & Carrera</a>
+            <a href="certificaciones.html" class="block py-2 text-slate-200 hover:text-emerald-400 transition-colors">Buscador Interactivo</a>
+            <a href="salarios.html" class="block py-2 text-emerald-400 font-bold" aria-current="page">Comparativa Salarial</a>
+            <a href="roi.html" class="block py-2 text-slate-200 hover:text-emerald-400 transition-colors">Simulador ROI</a>
+            <a href="fuentes.html" class="block py-2 text-slate-200 hover:text-emerald-400 transition-colors">Fuentes</a>
+    </nav>
+</header>
+<main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+<section id="salaries-chart" class="space-y-6">
+            <div class="border-b border-slate-200 pb-3">
+                <h3 class="text-2xl font-bold text-slate-900">4. Análisis Comparativo Salarial y Benchmark Regional</h3>
+                <p class="text-slate-600 text-sm mt-1">
+                    Visualice los promedios salariales de las certificaciones mejor retribuidas globalmente y explore las bandas salariales en España frente al mercado de trabajo remoto internacional desde Latinoamérica.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Chart 1: Top Paid Certifications -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">Top 8 Certificaciones Mejor Pagadas (USD / Año)</h4>
+                        <p class="text-xs text-slate-500 mb-4">Promedios registrados en el mercado global / EE. UU.</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="topSalaryChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-4 italic">
+                        Nota: Las credenciales avanzadas en seguridad cloud, arquitectura de IA y gobernanza lideran la franja de los $160k - $200k+ USD.
+                    </p>
+                </div>
+
+                <!-- Chart 2: Regional Benchmark (Spain vs Remote LatAm) -->
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">Rango Salarial por Seniority: España vs. Remoto Global</h4>
+                        <p class="text-xs text-slate-500 mb-4">Comparativa brutos anuales estimados (€ España vs USD Remoto LatAm convertidos a K)</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="regionalChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-4 italic">
+                        Nota: El trabajo remoto internacional para empresas de EE. UU./Europa incrementa de 1.5x a 2.5x el ingreso medio en comparación con mercados locales.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Regional Table Summary -->
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                <div class="bg-slate-900 text-white p-4 font-bold text-sm">
+                    Tabla de Referencia Salarial por Rol y Nivel (España vs LatAm Remoto)
+                </div>
+                <div class="overflow-x-auto scrollbar-thin">
+                    <table class="w-full text-left text-xs text-slate-700">
+                        <thead class="bg-slate-100 uppercase text-slate-600 font-semibold border-b border-slate-200">
+                            <tr>
+                                <th class="p-3">Rol / Especialidad</th>
+                                <th class="p-3">Seniority</th>
+                                <th class="p-3">Rango España (€/año)</th>
+                                <th class="p-3">Remoto Internacional (USD/mes)</th>
+                                <th class="p-3">Certificación Clave</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 font-medium">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Analista SOC / Cyber</td>
+                                <td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Junior (0-3a)</span></td>
+                                <td class="p-3">20.000 € - 35.000 €</td>
+                                <td class="p-3">$2.000 - $3.500 USD</td>
+                                <td class="p-3">CompTIA Security+ / CySA+</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Analista de Datos / BI</td>
+                                <td class="p-3"><span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Junior (0-3a)</span></td>
+                                <td class="p-3">20.000 € - 35.000 €</td>
+                                <td class="p-3">$2.000 - $3.500 USD</td>
+                                <td class="p-3">Power BI PL-300</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Ethical Hacker / Pentester</td>
+                                <td class="p-3"><span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded">Mid (3-6a)</span></td>
+                                <td class="p-3">35.000 € - 60.000 €</td>
+                                <td class="p-3">$3.500 - $6.500 USD</td>
+                                <td class="p-3">CEH / OSCP</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Ingeniero de Datos / Analytics</td>
+                                <td class="p-3"><span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded">Mid / Senior</span></td>
+                                <td class="p-3">40.000 € - 75.000 €</td>
+                                <td class="p-3">$4.000 - $8.000 USD</td>
+                                <td class="p-3">Azure DP-203 / Fabric DP-600</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Ingeniero Seguridad Cloud / DevSecOps</td>
+                                <td class="p-3"><span class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded">Senior (+6a)</span></td>
+                                <td class="p-3">50.000 € - 90.000 €</td>
+                                <td class="p-3">$6.000 - $12.000 USD</td>
+                                <td class="p-3">AWS Security Spec / CKA</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">CISO / CDO / Director IT</td>
+                                <td class="p-3"><span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded">Lead (+10a)</span></td>
+                                <td class="p-3">80.000 € - 170.000 €+</td>
+                                <td class="p-3">$10.000 - $18.000+ USD</td>
+                                <td class="p-3">CISSP / CISM / PMP</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+</main>
+<footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
+            <p>© 2026 TechCert Analytics • Informe Global e Interactivo de Certificaciones Tecnológicas y STEAM.</p>
+            <p class="text-slate-500">Datos consolidados de Pearson VUE, Skillsoft, Hays, IDC, Microsoft Learn, AWS, CNCF y PMI.</p>
+        </div>
+    </footer>
+<script>
+const certificationsData = [
+    {
+        "id": "aws-sec",
+        "name": "AWS Certified Security – Specialty",
+        "code": "SCS-C02",
+        "salary": 203597
+    },
+    {
+        "id": "gcp-arch",
+        "name": "GCP Professional Cloud Architect",
+        "code": "GCP-PCA",
+        "salary": 190204
+    },
+    {
+        "id": "fabric-ae",
+        "name": "Fabric Analytics Engineer Associate",
+        "code": "DP-600",
+        "salary": 188727
+    },
+    {
+        "id": "nutanix-mci",
+        "name": "Nutanix Certified Professional (NCP-MCI)",
+        "code": "NCP-MCI",
+        "salary": 175409
+    },
+    {
+        "id": "azure-data-eng",
+        "name": "Azure Data Engineer Associate",
+        "code": "DP-203",
+        "salary": 174588
+    },
+    {
+        "id": "ccsp",
+        "name": "CCSP - Certified Cloud Security Professional",
+        "code": "CCSP",
+        "salary": 171524
+    },
+    {
+        "id": "ccnp-sec",
+        "name": "CCNP Security",
+        "code": "CCNP-SEC",
+        "salary": 168159
+    },
+    {
+        "id": "cissp",
+        "name": "CISSP - Information Systems Security",
+        "code": "CISSP",
+        "salary": 168060
+    }
+];
+// Chart 1 Initialization: Top Paying Certifications
+        function initTopSalaryChart() {
+            const ctx = document.getElementById('topSalaryChart').getContext('2d');
+            
+            // Filter top 8 sorted by salary
+            const top8 = [...certificationsData].sort((a,b) => b.salary - a.salary).slice(0, 8);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: top8.map(c => c.code.length > 16 ? c.code.substring(0, 14) + '..' : c.code),
+                    datasets: [{
+                        label: 'Salario Promedio Anual (USD)',
+                        data: top8.map(c => c.salary),
+                        backgroundColor: '#10b981',
+                        borderRadius: 6,
+                        hoverBackgroundColor: '#059669'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `$${context.raw.toLocaleString()} USD/año`;
+                                },
+                                title: function(context) {
+                                    return top8[context[0].dataIndex].name;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 120000,
+                            ticks: {
+                                callback: value => '$' + (value/1000) + 'k'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: { size: 10 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart 2 Initialization: Regional Benchmark
+        function initRegionalChart() {
+            const ctx = document.getElementById('regionalChart').getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Junior (0-3a)', 'Mid (3-6a)', 'Senior (6-10a)', 'Lead (+10a)'],
+                    datasets: [
+                        {
+                            label: 'España (€ Bruto/Año Máx)',
+                            data: [35000, 65000, 90000, 170000],
+                            backgroundColor: '#6366f1',
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Remoto LatAm (USD Anualizado Máx)',
+                            data: [42000, 78000, 144000, 216000],
+                            backgroundColor: '#38bdf8',
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11 } } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw.toLocaleString()} k/año`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: value => '$' + (value/1000) + 'k'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    
+initTopSalaryChart();
+initRegionalChart();
+</script>
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMobileMenu = () => {
+        mobileMenu?.classList.add('hidden');
+        mobileMenuButton?.setAttribute('aria-expanded', 'false');
+        mobileMenuButton?.setAttribute('aria-label', 'Abrir menú');
+    };
+    mobileMenuButton?.addEventListener('click', () => {
+        const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenu?.classList.toggle('hidden', expanded);
+        mobileMenuButton.setAttribute('aria-expanded', String(!expanded));
+        mobileMenuButton.setAttribute('aria-label', expanded ? 'Abrir menú' : 'Cerrar menú');
+    });
+    mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && mobileMenuButton?.getAttribute('aria-expanded') === 'true') {
+            closeMobileMenu();
+            mobileMenuButton.focus();
+        }
+    });
+</script>
+</body>
+</html>
