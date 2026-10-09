@@ -4,6 +4,7 @@
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Simulación orientativa de descuentos en exámenes de certificación AWS."><title>Descuentos en exámenes | TechCert Guía</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="currency.js" defer></script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased leading-relaxed min-h-screen flex flex-col">
     <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
@@ -35,6 +36,23 @@
                 </p>
             </div>
 
+            <div aria-label="Preferencias de país y moneda" class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                <div class="grid gap-3 md:grid-cols-[1fr_auto_auto] md:items-end">
+                    <div><h2 class="text-sm font-bold text-slate-900">País y moneda</h2><p class="mt-1 text-xs text-slate-600">España y EUR están seleccionados por defecto.</p></div>
+                    <label class="block text-xs font-semibold text-slate-700">País o región
+                        <select id="country-select" class="mt-1 block w-full min-w-48 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                            <option value="ES">España</option><option value="EU">Otro país de la zona euro</option><option value="US">Estados Unidos</option><option value="GB">Reino Unido</option><option value="CH">Suiza</option><option value="JP">Japón</option><option value="CZ">Chequia</option><option value="DK">Dinamarca</option><option value="HU">Hungría</option><option value="PL">Polonia</option><option value="RO">Rumanía</option><option value="SE">Suecia</option><option value="IS">Islandia</option><option value="NO">Noruega</option><option value="TR">Turquía</option><option value="AU">Australia</option><option value="BR">Brasil</option><option value="CA">Canadá</option>
+                        </select>
+                    </label>
+                    <label class="block text-xs font-semibold text-slate-700">Moneda
+                        <select id="currency-select" class="mt-1 block w-full min-w-48 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30">
+                            <option value="EUR">Euro (EUR)</option><option value="USD">Dólar estadounidense (USD)</option><option value="GBP">Libra esterlina (GBP)</option><option value="CHF">Franco suizo (CHF)</option><option value="JPY">Yen japonés (JPY)</option><option value="CZK">Corona checa (CZK)</option><option value="DKK">Corona danesa (DKK)</option><option value="HUF">Forinto húngaro (HUF)</option><option value="PLN">Zloty polaco (PLN)</option><option value="RON">Leu rumano (RON)</option><option value="SEK">Corona sueca (SEK)</option><option value="ISK">Corona islandesa (ISK)</option><option value="NOK">Corona noruega (NOK)</option><option value="TRY">Lira turca (TRY)</option><option value="AUD">Dólar australiano (AUD)</option><option value="BRL">Real brasileño (BRL)</option><option value="CAD">Dólar canadiense (CAD)</option>
+                        </select>
+                    </label>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">Importes orientativos convertidos desde USD; no sustituyen la tarifa local del emisor ni incluyen impuestos. Tipo de referencia ECB: <span id="currency-rate-date">8 oct 2026</span>. <a class="font-semibold text-emerald-800 underline" href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.es.html" target="_blank" rel="noopener noreferrer">Ver tipos</a>.</p>
+            </div>
+
             <div class="bg-gradient-to-br from-slate-900 to-indigo-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Explanation Column -->
                 <div class="space-y-4 lg:col-span-1">
@@ -46,11 +64,11 @@
                         Al obtener una certificación AWS, puedes acceder a un cupón de <strong>50% de descuento</strong> para un examen futuro. Consulta las condiciones vigentes en tu cuenta oficial.
                     </p>
                     <p class="text-xs text-slate-300 leading-relaxed">
-                        El simulador usa tarifas de referencia en USD para ilustrar el descuento. La moneda, tarifa y disponibilidad dependen de la región y de las condiciones aplicables.
+                        El simulador parte de tarifas de referencia en USD y las convierte a la moneda elegida. La tarifa, los impuestos y la disponibilidad dependen del país y de las condiciones del emisor.
                     </p>
                     <div class="pt-2">
                         <div class="text-xs text-slate-400">Ahorro ilustrativo con las tarifas de este ejemplo</div>
-                        <div class="text-3xl font-extrabold text-emerald-400">$225 USD (41% Ahorro)</div>
+                        <div class="text-3xl font-extrabold text-emerald-400"><span data-usd-price="225">$225 USD</span> <span class="text-base">(41% ahorro)</span></div>
                     </div>
                 </div>
 
@@ -64,10 +82,10 @@
                             <div>
                                 <span class="text-xs font-bold text-emerald-400">PASO 1 • Junior</span>
                                 <h6 class="text-sm font-bold text-white">AWS Cloud Practitioner (CLF-C02)</h6>
-                                <p class="text-xs text-slate-400">Tarifa base ilustrativa: $100 USD</p>
+                                <p class="text-xs text-slate-400">Tarifa base ilustrativa: <span data-usd-price="100">$100 USD</span></p>
                             </div>
                             <div class="text-right">
-                                <span class="text-sm font-extrabold text-white">$100 USD</span>
+                                <span class="text-sm font-extrabold text-white" data-usd-price="100">$100 USD</span>
                                 <div class="text-[10px] text-emerald-400">Puede habilitar un descuento futuro 🎟️</div>
                             </div>
                         </div>
@@ -77,11 +95,11 @@
                             <div>
                                 <span class="text-xs font-bold text-sky-400">PASO 2 • Mid-Level</span>
                                 <h6 class="text-sm font-bold text-white">AWS Solutions Architect / Data Engineer Assoc.</h6>
-                                <p class="text-xs text-slate-400">Tarifa base ilustrativa: $150 USD | Con Cupón Paso 1</p>
+                                <p class="text-xs text-slate-400">Tarifa base ilustrativa: <span data-usd-price="150">$150 USD</span> | Con Cupón Paso 1</p>
                             </div>
                             <div class="text-right">
-                                <span class="text-sm font-extrabold text-sky-400">$75 USD</span>
-                                <span class="line-through text-xs text-slate-500 block">$150</span>
+                                <span class="text-sm font-extrabold text-sky-400" data-usd-price="75">$75 USD</span>
+                                <span class="line-through text-xs text-slate-500 block" data-usd-price="150">$150 USD</span>
                                 <div class="text-[10px] text-emerald-400">Puede habilitar un descuento futuro 🎟️</div>
                             </div>
                         </div>
@@ -91,11 +109,11 @@
                             <div>
                                 <span class="text-xs font-bold text-purple-400">PASO 3 • Senior</span>
                                 <h6 class="text-sm font-bold text-white">AWS Security Specialty / ML Specialty</h6>
-                                <p class="text-xs text-slate-400">Coste oficial: $300 USD | Con Cupón Paso 2</p>
+                                <p class="text-xs text-slate-400">Tarifa base ilustrativa: <span data-usd-price="300">$300 USD</span> | Con Cupón Paso 2</p>
                             </div>
                             <div class="text-right">
-                                <span class="text-sm font-extrabold text-purple-400">$150 USD</span>
-                                <span class="line-through text-xs text-slate-500 block">$300</span>
+                                <span class="text-sm font-extrabold text-purple-400" data-usd-price="150">$150 USD</span>
+                                <span class="line-through text-xs text-slate-500 block" data-usd-price="300">$300 USD</span>
                                 <div class="text-[10px] text-emerald-400">Fin de la simulación</div>
                             </div>
                         </div>
@@ -105,11 +123,11 @@
                     <div class="pt-2 border-t border-slate-700 flex justify-between items-center text-xs">
                         <div>
                             <span class="text-slate-400 block">Inversión Directa Tradicional:</span>
-                            <span class="text-slate-300 font-bold">$550 USD</span>
+                            <span class="text-slate-300 font-bold" data-usd-price="550">$550 USD</span>
                         </div>
                         <div class="text-right">
                             <span class="text-slate-400 block">Inversión Mediante Voucher Chain:</span>
-                            <span class="text-emerald-400 font-black text-sm">$325 USD</span>
+                            <span class="text-emerald-400 font-black text-sm" data-usd-price="325">$325 USD</span>
                         </div>
                     </div>
                 </div>
