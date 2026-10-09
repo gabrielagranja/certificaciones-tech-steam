@@ -464,7 +464,7 @@ document.addEventListener('DOMContentLoaded',() => {
             const validSeniorities = ['ALL', 'Junior', 'Mid', 'Senior', 'Lead'];
             if (validDomains.includes(domain)) document.getElementById('domain-filter').value = domain;
             if (validSeniorities.includes(seniority)) document.getElementById('seniority-filter').value = seniority;
-            renderCertifications();
+            applyFilters();
         });
 // Apply Explorer Filters and Render
         function applyFilters() {
