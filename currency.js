@@ -76,20 +76,20 @@
             }
         }
         if (currencySelect && currencyLabels[currencySelect.value]) selectedCurrency = currencySelect.value;
-        savePreference('techcert-country', selectedCountry);
-        savePreference('techcert-currency', selectedCurrency);
+        savePreference('techcert-country-v2', selectedCountry);
+        savePreference('techcert-currency-v2', selectedCurrency);
         updatePrices();
     }
 
     function initSelectors() {
         const countrySelect = document.getElementById('country-select');
         const currencySelect = document.getElementById('currency-select');
-        if (countrySelect && countryCurrency[readPreference('techcert-country', 'ES')]) {
-            selectedCountry = readPreference('techcert-country', 'ES');
+        if (countrySelect && countryCurrency[readPreference('techcert-country-v2', 'ES')]) {
+            selectedCountry = readPreference('techcert-country-v2', 'ES');
             countrySelect.value = selectedCountry;
         }
-        if (currencySelect && currencyLabels[readPreference('techcert-currency', 'EUR')]) {
-            selectedCurrency = readPreference('techcert-currency', 'EUR');
+        if (currencySelect && currencyLabels[readPreference('techcert-currency-v2', 'EUR')]) {
+            selectedCurrency = readPreference('techcert-currency-v2', 'EUR');
             currencySelect.value = selectedCurrency;
         } else if (currencySelect) {
             currencySelect.value = selectedCurrency;
