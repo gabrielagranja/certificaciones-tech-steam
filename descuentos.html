@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simulación orientativa de descuentos en exámenes de certificación AWS."><title>Descuentos en exámenes | TechCert Guía</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased leading-relaxed min-h-screen flex flex-col">
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-16 flex items-center justify-between gap-4">
+            <a href="index.html" class="flex items-center space-x-3 shrink-0" aria-label="TechCert Guía, inicio"><span class="text-2xl font-black text-emerald-400">❖</span><span class="text-lg sm:text-xl font-bold tracking-tight">TechCert <span class="text-emerald-400 font-normal">Guía</span></span></a>
+            <nav aria-label="Navegación principal" class="hidden md:flex items-center gap-4 lg:gap-6 text-sm font-medium">
+                <a href="index.html" class="text-slate-200 hover:text-emerald-400 transition-colors">Inicio</a>
+                <a href="carrera.html" class="text-slate-200 hover:text-emerald-400 transition-colors">Carrera</a>
+                <a href="certificaciones.html" class="text-slate-200 hover:text-emerald-400 transition-colors">Certificaciones</a>
+                <a href="descuentos.html" class="text-emerald-400 transition-colors" aria-current="page">Descuentos</a>
+                <a href="fuentes.html" class="text-slate-200 hover:text-emerald-400 transition-colors">Fuentes</a>
+            </nav>
+            <div class="md:hidden"><button id="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false" class="p-2 text-slate-300 hover:text-white text-xl">☰</button></div>
+        </div>
+        <nav id="mobile-menu" aria-label="Navegación móvil" class="hidden md:hidden bg-slate-800 px-4 pt-2 pb-4 space-y-2 border-t border-slate-700">
+            <a href="index.html" class="block text-slate-200 hover:text-emerald-400 py-1">Inicio</a>
+            <a href="carrera.html" class="block text-slate-200 hover:text-emerald-400 py-1">Carrera</a>
+            <a href="certificaciones.html" class="block text-slate-200 hover:text-emerald-400 py-1">Certificaciones</a>
+            <a href="descuentos.html" class="block text-emerald-400 font-bold py-1" aria-current="page">Descuentos</a>
+            <a href="fuentes.html" class="block text-slate-200 hover:text-emerald-400 py-1">Fuentes</a>
+        </nav>
+    </header>
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+<section id="voucher-sim" class="space-y-6">
+            <div class="border-b border-slate-200 pb-3">
+                <h1 class="text-2xl font-bold text-slate-900">Simulador de descuentos en exámenes AWS</h1>
+                <p class="text-slate-600 text-sm mt-1">
+                    Ejemplo ilustrativo del descuento que puede aplicarse a una ruta de tres exámenes AWS; consulta las condiciones vigentes antes de planificar el gasto.
+                </p>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-900 to-indigo-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Explanation Column -->
+                <div class="space-y-4 lg:col-span-1">
+                    <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30">
+                        Mecanismo de Descuento AWS
+                    </span>
+                    <h4 class="text-xl font-bold">¿Cómo funciona la cadena de cupones?</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Al obtener una certificación AWS, puedes acceder a un cupón de <strong>50% de descuento</strong> para un examen futuro. Consulta las condiciones vigentes en tu cuenta oficial.
+                    </p>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        El simulador usa tarifas de referencia en USD para ilustrar el descuento. La moneda, tarifa y disponibilidad dependen de la región y de las condiciones aplicables.
+                    </p>
+                    <div class="pt-2">
+                        <div class="text-xs text-slate-400">Ahorro ilustrativo con las tarifas de este ejemplo</div>
+                        <div class="text-3xl font-extrabold text-emerald-400">$225 USD (41% Ahorro)</div>
+                    </div>
+                </div>
+
+                <!-- Interactive Stepper -->
+                <div class="lg:col-span-2 bg-slate-800/80 p-5 rounded-xl border border-slate-700 space-y-4">
+                    <h5 class="text-sm font-bold text-slate-200">Simulación del Itinerario Progresivo</h5>
+
+                    <div class="space-y-3">
+                        <!-- Step 1 -->
+                        <div class="flex items-start justify-between bg-slate-900/90 p-3 rounded-lg border border-slate-700">
+                            <div>
+                                <span class="text-xs font-bold text-emerald-400">PASO 1 • Junior</span>
+                                <h6 class="text-sm font-bold text-white">AWS Cloud Practitioner (CLF-C02)</h6>
+                                <p class="text-xs text-slate-400">Tarifa base ilustrativa: $100 USD</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-sm font-extrabold text-white">$100 USD</span>
+                                <div class="text-[10px] text-emerald-400">Puede habilitar un descuento futuro 🎟️</div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="flex items-start justify-between bg-slate-900/90 p-3 rounded-lg border border-slate-700">
+                            <div>
+                                <span class="text-xs font-bold text-sky-400">PASO 2 • Mid-Level</span>
+                                <h6 class="text-sm font-bold text-white">AWS Solutions Architect / Data Engineer Assoc.</h6>
+                                <p class="text-xs text-slate-400">Tarifa base ilustrativa: $150 USD | Con Cupón Paso 1</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-sm font-extrabold text-sky-400">$75 USD</span>
+                                <span class="line-through text-xs text-slate-500 block">$150</span>
+                                <div class="text-[10px] text-emerald-400">Puede habilitar un descuento futuro 🎟️</div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="flex items-start justify-between bg-slate-900/90 p-3 rounded-lg border border-slate-700">
+                            <div>
+                                <span class="text-xs font-bold text-purple-400">PASO 3 • Senior</span>
+                                <h6 class="text-sm font-bold text-white">AWS Security Specialty / ML Specialty</h6>
+                                <p class="text-xs text-slate-400">Coste oficial: $300 USD | Con Cupón Paso 2</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-sm font-extrabold text-purple-400">$150 USD</span>
+                                <span class="line-through text-xs text-slate-500 block">$300</span>
+                                <div class="text-[10px] text-emerald-400">Fin de la simulación</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Summary Comparison -->
+                    <div class="pt-2 border-t border-slate-700 flex justify-between items-center text-xs">
+                        <div>
+                            <span class="text-slate-400 block">Inversión Directa Tradicional:</span>
+                            <span class="text-slate-300 font-bold">$550 USD</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-slate-400 block">Inversión Mediante Voucher Chain:</span>
+                            <span class="text-emerald-400 font-black text-sm">$325 USD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2"><p>© 2026 TechCert Guía • Certificaciones tecnológicas y STEAM.</p><p class="text-slate-500">Los enlaces remiten a páginas oficiales de los emisores. Verifica vigencia, tarifas locales y requisitos antes de registrarte.</p></div></footer>
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton?.addEventListener('click', () => {
+            const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+            mobileMenuButton.setAttribute('aria-expanded', String(!expanded));
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>
