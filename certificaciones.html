@@ -73,6 +73,7 @@
                     <label class="block text-xs font-bold text-slate-700 mb-1">Dominio Tecnológico</label>
                     <select id="domain-filter" onchange="applyFilters()" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none">
                         <option value="ALL">Todos los Dominios</option>
+                        <option value="IT">Fundamentos de TI</option>
                         <option value="Cloud">Cloud & Infraestructura</option>
                         <option value="Cybersecurity">Ciberseguridad & GRC</option>
                         <option value="DataAI">Datos, IA & Analítica</option>
@@ -138,7 +139,69 @@
 </script>
 <script>
 const certificationsData = [
+            // IT Foundations
+            {
+                id: 'comptia-a-plus',
+                officialUrl: 'https://www.comptia.org/certifications/a',
+                name: 'CompTIA A+',
+                code: 'A+',
+                provider: 'CompTIA',
+                domain: 'IT',
+                domainLabel: 'Fundamentos de TI',
+                seniority: 'Junior',
+                cost: null,
+                duration: 'Consulta ficha oficial',
+                format: 'Dos exámenes Core; confirma las versiones y el formato vigentes en CompTIA.',
+                description: 'Certificación de fundamentos para soporte técnico, resolución de problemas de hardware, software, redes y sistemas operativos.',
+                preReqs: 'No hay requisitos formales de experiencia; consulta la guía oficial para las recomendaciones y versiones actuales.'
+            },
+            {
+                id: 'comptia-security-plus',
+                officialUrl: 'https://www.comptia.org/certifications/security',
+                name: 'CompTIA Security+',
+                code: 'Security+',
+                provider: 'CompTIA',
+                domain: 'Cybersecurity',
+                domainLabel: 'Ciberseguridad & GRC',
+                seniority: 'Junior',
+                cost: null,
+                duration: 'Consulta ficha oficial',
+                format: 'Examen de ciberseguridad; consulta la versión vigente y su formato en CompTIA.',
+                description: 'Valida conocimientos base para proteger sistemas, redes y datos, gestionar riesgos y responder a incidentes de seguridad.',
+                preReqs: 'CompTIA recomienda experiencia previa en redes y seguridad; revisa las recomendaciones oficiales antes de inscribirte.'
+            },
             // Cloud & Infrastructure
+            {
+                id: 'aws-cloud-practitioner',
+                officialUrl: 'https://aws.amazon.com/es/certification/certified-cloud-practitioner/',
+                name: 'AWS Certified Cloud Practitioner',
+                code: 'CLF-C02',
+                provider: 'Amazon Web Services',
+                domain: 'Cloud',
+                domainLabel: 'Cloud & Infraestructura',
+                seniority: 'Junior',
+                cost: 100,
+                duration: '90 min',
+                format: '65 preguntas de opción múltiple o respuesta múltiple',
+                description: 'Acredita conocimientos fundamentales sobre los servicios, la terminología, la seguridad y el valor de la nube de AWS.',
+                preReqs: 'No se requiere experiencia técnica previa; AWS la plantea como una certificación inicial de nube.'
+            },
+            {
+                id: 'azure-fundamentals',
+                officialUrl: 'https://learn.microsoft.com/es-es/credentials/certifications/azure-fundamentals/',
+                name: 'Microsoft Certified: Azure Fundamentals',
+                code: 'AZ-900',
+                provider: 'Microsoft Azure',
+                domain: 'Cloud',
+                domainLabel: 'Cloud & Infraestructura',
+                seniority: 'Junior',
+                cost: null,
+                duration: '45 min',
+                format: 'Examen de fundamentos; consulta la guía AZ-900 para el alcance y los formatos vigentes.',
+                description: 'Demuestra conocimientos fundamentales de conceptos de nube, servicios principales de Azure, administración y gobernanza.',
+                preReqs: 'No exige experiencia previa y sirve como punto de partida común para una trayectoria profesional en Azure.'
+            },
+            // Additional Cloud & Infrastructure credentials
             {
                 id: 'aws-sec',
                 officialUrl: 'https://aws.amazon.com/es/certification/certified-security-specialty/',
@@ -352,6 +415,22 @@ const certificationsData = [
                 preReqs: '2 años de experiencia en TI o haber completado formación oficial EC-Council.'
             },
 
+            {
+                id: 'oscp-plus',
+                officialUrl: 'https://www.offsec.com/products/oscp-plus/',
+                name: 'OffSec Certified Professional (OSCP+)',
+                code: 'OSCP+',
+                provider: 'OffSec',
+                domain: 'Cybersecurity',
+                domainLabel: 'Ciberseguridad & GRC',
+                seniority: 'Senior',
+                cost: 1699,
+                duration: '23 h 45 min + plazo para informe',
+                format: 'Examen práctico en laboratorio de pruebas de penetración.',
+                description: 'Evalúa habilidades prácticas de pentesting, identificación de vulnerabilidades, explotación, escalado de privilegios y documentación.',
+                preReqs: 'No hay requisitos formales; OffSec recomienda bases sólidas de TCP/IP, scripting y familiaridad con Linux y Windows.'
+            },
+
             // Data, AI & Analytics
             {
                 id: 'fabric-ae',
@@ -461,6 +540,21 @@ const certificationsData = [
                 preReqs: 'Título universitario + 36 meses liderando proyectos (o 60 meses sin grado).'
             },
             {
+                id: 'pgmp',
+                officialUrl: 'https://www.pmi.org/certifications/program-management-pgmp',
+                name: 'Program Management Professional (PgMP)',
+                code: 'PgMP',
+                provider: 'PMI',
+                domain: 'STEAM',
+                domainLabel: 'STEAM, Agilidad & Gestión',
+                seniority: 'Lead',
+                cost: null,
+                duration: '240 min',
+                format: '170 preguntas; la elegibilidad incluye revisión de panel de PMI.',
+                description: 'Acredita experiencia avanzada en la gestión coordinada de programas y en la alineación de proyectos con objetivos estratégicos.',
+                preReqs: 'Requisitos exigentes de experiencia en dirección de proyectos y programas; verifica la vía de elegibilidad que te corresponde en PMI.'
+            },
+            {
                 id: 'safe-sa',
                 officialUrl: 'https://scaledagile.com/certification/safe-agilist/',
                 name: 'SAFe Agilist (SA)',
@@ -496,11 +590,21 @@ document.addEventListener('DOMContentLoaded',() => {
             const params = new URLSearchParams(window.location.search);
             const domain = params.get('domain');
             const seniority = params.get('seniority');
-            const validDomains = ['ALL', 'Cloud', 'Cybersecurity', 'DataAI', 'STEAM'];
+            const certificationId = params.get('cert');
+            const requestedCertification = certificationsData.find(item => item.id === certificationId);
+            const validDomains = ['ALL', 'IT', 'Cloud', 'Cybersecurity', 'DataAI', 'STEAM'];
             const validSeniorities = ['ALL', 'Junior', 'Mid', 'Senior', 'Lead'];
             if (validDomains.includes(domain)) document.getElementById('domain-filter').value = domain;
             if (validSeniorities.includes(seniority)) document.getElementById('seniority-filter').value = seniority;
+            if (requestedCertification) document.getElementById('search-input').value = requestedCertification.code;
             applyFilters();
+            if (requestedCertification) {
+                requestAnimationFrame(() => {
+                    const card = document.getElementById(`cert-card-${requestedCertification.id}`);
+                    card?.focus({ preventScroll: true });
+                    card?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            }
         });
 // Apply Explorer Filters and Render
         function applyFilters() {
@@ -523,7 +627,13 @@ document.addEventListener('DOMContentLoaded',() => {
 
             // Sorting logic
             filtered.sort((a, b) => {
-                if (activeSort === 'cost-asc') return a.cost - b.cost;
+                if (activeSort === 'cost-asc') {
+                    const aHasPrice = Number.isFinite(a.cost);
+                    const bHasPrice = Number.isFinite(b.cost);
+                    if (aHasPrice !== bHasPrice) return aHasPrice ? -1 : 1;
+                    if (!aHasPrice) return a.name.localeCompare(b.name);
+                    return a.cost - b.cost;
+                }
                 if (activeSort === 'name') return a.name.localeCompare(b.name);
                 return 0;
             });
@@ -543,7 +653,7 @@ document.addEventListener('DOMContentLoaded',() => {
             }
 
             grid.innerHTML = filtered.map(item => `
-                <div class="bg-white rounded-xl border border-slate-200 hover:border-emerald-500 shadow-sm hover:shadow-md transition-all p-5 flex flex-col justify-between space-y-4">
+                <div id="cert-card-${item.id}" tabindex="-1" class="bg-white rounded-xl border border-slate-200 hover:border-emerald-500 shadow-sm hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 p-5 flex flex-col justify-between space-y-4">
                     <div class="space-y-2">
                         <div class="flex items-center justify-between text-xs">
                             <span class="font-bold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">${item.domainLabel}</span>
@@ -558,7 +668,7 @@ document.addEventListener('DOMContentLoaded',() => {
                         <div class="flex justify-end items-end">
                             <div class="text-right">
                                 <span class="text-[10px] uppercase text-slate-400 font-bold block">Tarifa base de referencia convertida</span>
-                                <span class="text-sm font-bold text-slate-700" data-usd-price="${item.cost}">$${item.cost} USD</span>
+                                ${Number.isFinite(item.cost) ? `<span class="text-sm font-bold text-slate-700" data-usd-price="${item.cost}">${item.cost} USD</span>` : '<span class="text-sm font-bold text-slate-700">Consultar tarifa oficial</span>'}
                             </div>
                         </div>
 
@@ -588,7 +698,7 @@ document.addEventListener('DOMContentLoaded',() => {
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 grid grid-cols-2 gap-3 text-xs">
                         <div>
                             <span class="text-slate-500 block">Coste orientativo del examen:</span>
-                            <span class="text-base font-bold text-slate-800" data-usd-price="${item.cost}">$${item.cost} USD</span>
+                            ${Number.isFinite(item.cost) ? `<span class="text-base font-bold text-slate-800" data-usd-price="${item.cost}">${item.cost} USD</span>` : '<span class="text-base font-bold text-slate-800">Consultar tarifa oficial</span>'}
                         </div>
                         <div>
                             <span class="text-slate-500 block">Duración Examen:</span>
