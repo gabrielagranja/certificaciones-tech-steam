@@ -36,32 +36,71 @@
         try { localStorage.setItem(key, value); } catch { /* Keep the current selection for this visit. */ }
     };
 
-    function exchangeRate(currency) {
-        const usdPerEur = eurRates.USD;
-        if (!usdPerEur) return currency === 'USD' ? 1 : 1 / fallbackEurRates.USD;
-        return currency === 'USD' ? 1 : (eurRates[currency] || fallbackEurRates[currency] || 1) / usdPerEur;
+    function currencyRate(currency) {
+        return eurRates[currency] || fallbackEurRates[currency] || 1;
+    }
+
+    function convertAmount(amount, baseCurrency = 'USD') {
+        return Number(amount) * currencyRate(selectedCurrency) / currencyRate(baseCurrency);
+    }
+
+    function selectedLocale() {
+        return countryLocale[selectedCountry] || 'es-ES';
+    }
+
+    function fractionDigits(maximum) {
+        if (maximum !== undefined && maximum !== null && maximum !== '') return Number(maximum);
+        return ['JPY', 'HUF', 'ISK'].includes(selectedCurrency) ? 0 : 2;
+    }
+
+    function formatBaseAmount(amount, baseCurrency = 'USD', maximumFractionDigits) {
+        return new Intl.NumberFormat(selectedLocale(), {
+            style: 'currency',
+            currency: selectedCurrency,
+            maximumFractionDigits: fractionDigits(maximumFractionDigits)
+        }).format(convertAmount(amount, baseCurrency));
     }
 
     function formatUsd(amount) {
-        const locale = countryLocale[selectedCountry] || 'es-ES';
-        return new Intl.NumberFormat(locale, {
-            style: 'currency', currency: selectedCurrency,
-            maximumFractionDigits: ['JPY', 'HUF', 'ISK'].includes(selectedCurrency) ? 0 : 2
-        }).format(Number(amount) * exchangeRate(selectedCurrency));
+        return formatBaseAmount(amount, 'USD');
+    }
+
+    function formatUsdMillions(amount) {
+        const converted = convertAmount(Number(amount) * 1000000, 'USD') / 1000000;
+        const number = new Intl.NumberFormat(selectedLocale(), { maximumFractionDigits: 0 }).format(converted);
+        const symbol = new Intl.NumberFormat(selectedLocale(), {
+            style: 'currency', currency: selectedCurrency, maximumFractionDigits: 0
+        }).formatToParts(0).find(part => part.type === 'currency')?.value || selectedCurrency;
+        return `${number} M ${symbol}`;
     }
 
     function updatePrices() {
         document.querySelectorAll('[data-usd-price]').forEach((element) => {
-            element.textContent = formatUsd(element.dataset.usdPrice);
+            element.textContent = formatUsd(element.dataset.usdPrice, element.dataset.maxFractionDigits);
         });
         document.querySelectorAll('[data-original-usd]').forEach((element) => {
             element.textContent = `${formatUsd(element.dataset.originalUsd)} ${element.dataset.originalLabel || ''}`.trim();
+        });
+        document.querySelectorAll('[data-base-amount][data-base-currency]').forEach((element) => {
+            element.textContent = formatBaseAmount(
+                element.dataset.baseAmount,
+                element.dataset.baseCurrency,
+                element.dataset.maxFractionDigits
+            );
+        });
+        document.querySelectorAll('[data-usd-millions]').forEach((element) => {
+            element.textContent = formatUsdMillions(element.dataset.usdMillions);
         });
         const dateElement = document.getElementById('currency-rate-date');
         if (dateElement) {
             dateElement.textContent = new Intl.DateTimeFormat('es-ES', {
                 day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC'
             }).format(new Date(`${rateDate}T00:00:00Z`));
+        }
+        if (typeof CustomEvent === 'function') {
+            window.dispatchEvent(new CustomEvent('techcert:currencychange', {
+                detail: { country: selectedCountry, currency: selectedCurrency }
+            }));
         }
     }
 
@@ -133,6 +172,12 @@
     }
 
     window.updateTechCertPrices = updatePrices;
+    window.convertTechCertAmount = convertAmount;
+    window.formatTechCertAmount = formatBaseAmount;
+    window.formatTechCertCompactAmount = (amount) => new Intl.NumberFormat(selectedLocale(), {
+        style: 'currency', currency: selectedCurrency, notation: 'compact', maximumFractionDigits: 1
+    }).format(Number(amount));
+    window.getTechCertCurrency = () => selectedCurrency;
     document.addEventListener('DOMContentLoaded', () => {
         initSelectors();
         loadLatestRates();
