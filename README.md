@@ -1,19 +1,19 @@
-# TechCert Guía
+# TechCert Guide
 
-Guía informativa para explorar certificaciones profesionales de tecnología y STEAM, comparar requisitos, niveles y costes orientativos.
+An informational guide to explore professional Tech and STEAM certifications and compare their requirements, levels and indicative costs. It focuses on Spain, with an international perspective.
 
-> **Estado: en construcción.** El catálogo se amplía progresivamente.
+> **Status: under construction.** The catalog is being expanded progressively.
 
-**Web pública:** [TechCert Guía](https://gabrielagranja.github.io/certificaciones-tech-steam/index.html)
+**Live site:** [TechCert Guide](https://gabrielagranja.github.io/certificaciones-tech-steam/index.html) (the site content is currently in Spanish; an English version is planned).
 
-## Qué incluye
+## What it includes
 
-- Buscador de certificaciones con filtros y enlaces a los emisores.
-- Rutas de carrera y niveles profesionales.
-- Información sobre impacto, salarios, ROI, descuentos y fuentes.
+- Certification search with filters and links to the issuing bodies.
+- Career paths and professional levels.
+- Information on impact, salaries, ROI, discounts and sources.
 
-El proyecto es un sitio estático creado con HTML, CSS y JavaScript, publicado en GitHub Pages.
+The project is a static site built with HTML, CSS and JavaScript, published on GitHub Pages. It is an individual project.
 
-## Descargo de responsabilidad
+## Disclaimer
 
-La información de TechCert Guía tiene carácter meramente informativo y orientativo. No constituye asesoramiento académico, profesional, laboral, financiero o jurídico, ni garantiza empleo, ingresos o la obtención de una certificación. Los requisitos, exámenes, precios, vigencia y demás datos pueden cambiar o variar según el país y la fecha. Antes de inscribirte o tomar una decisión, consulta la información oficial vigente del organismo emisor. Las marcas y certificaciones pertenecen a sus respectivos titulares; este proyecto es independiente y no está afiliado a ellos, salvo que se indique expresamente.
+The information in TechCert Guide is provided for general information and guidance only. It does not constitute academic, professional, employment, financial or legal advice, and it does not guarantee a job, income or the award of a certification. Requirements, exams, prices, validity and other details may change or vary by country and date. Before enrolling or making a decision, check the current official information from the issuing body. Brands and certifications belong to their respective owners; this project is independent and is not affiliated with them unless expressly stated.
